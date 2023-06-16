@@ -39,6 +39,6 @@ jobs:
         with:
           appname: 'VeraDemo_github'
           createprofile: true
-          filepath: 'app/target/verademo.war'
+          filepath: 'verademo.war'
           vid: '${{ secrets.API_ID }}'
           vkey: '${{ secrets.API_KEY }}'
