@@ -2,6 +2,8 @@ name: first_github_workflow
 
 on: 
   workflow_dispatch:
+  push:
+    branches: [ main ]
 
 jobs:
   mvn_compile: 
@@ -15,6 +17,6 @@ jobs:
     - uses: actions/cache@v3
       with:
         path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles(´**/pom.xml´) }}
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
     - name: compile
       run: mvn clean package
