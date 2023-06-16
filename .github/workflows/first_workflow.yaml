@@ -24,4 +24,21 @@ jobs:
       with:
         name: verademo.war
         path: target/verademo.war
-        
+  
+  static_analysis:
+    runs-on: ubuntu-latest
+    needs: mvn_compile
+    steps:
+      - name: get artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: verademo.war
+          path: .
+      - name: Veracode Upload And Scan
+        uses: veracode/veracode-uploadandscan-action@0.2.6
+        with:
+          appname: 'VeraDemo_github'
+          createprofile: true
+          filepath: 'app/target/verademo.war'
+          vid: '${{ secrets.API_ID }}'
+          vkey: '${{ secrets.API_KEY }}'
