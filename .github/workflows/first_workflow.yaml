@@ -20,3 +20,8 @@ jobs:
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
     - name: compile
       run: mvn clean package
+    - uses: actions/upload-artifact@v3
+      with:
+        name: verademo.war
+        path: target/verademo.war
+        
