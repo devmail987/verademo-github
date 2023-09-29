@@ -41,6 +41,8 @@ jobs:
           createprofile: true
           scantimeout: 30
           scanpollinginterval: 30
+          createsandbox: true
+          sandboxname: test_sandbox
           filepath: 'verademo.war'
           vid: '${{ secrets.API_ID }}'
           vkey: '${{ secrets.API_KEY }}'
