@@ -1,0 +1,25 @@
+{
+  "_links": {
+    "root": {
+      "href": "/"
+    },
+    "self": {
+      "href": "/scans/7fa3c099-c281-474e-bb64-a3acbacde977/findings"
+    },
+    "help": {
+      "href": "https://help.veracode.com/reader/tS9CaFwL4_lbIEWWomsJoA/ovfZGgu96UINQxIuTqRDwg"
+    }
+  },
+  "scan_id": "7fa3c099-c281-474e-bb64-a3acbacde977",
+  "scan_status": "SUCCESS",
+  "message": "Scan successful. Results size: 403326 bytes",
+  "modules": [
+    "verademo.war",
+    "JS files within verademo.war"
+  ],
+  "modules_count": 2,
+  "findings": [],
+  "selected_modules": [],
+  "pipeline_scan": "23.11.0-0",
+  "dev_stage": "DEVELOPMENT"
+}

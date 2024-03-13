@@ -1,0 +1,64 @@
+name: pipeline_scan_issues
+
+on: 
+  workflow_dispatch:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  mvn_compile: 
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-java@v3
+      with:
+        distribution: 'zulu'
+        java-version: 8
+    - uses: actions/cache@v3
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+    - name: compile
+      run: mvn clean package
+    - uses: actions/upload-artifact@v3
+      with:
+        name: verademo.war
+        path: target/verademo.war
+
+# This first step is assumed to exist already in your Workflow
+  pipeline_scan:
+    needs: mvn_compile
+    runs-on: ubuntu-latest
+    name: pipeline scan
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
+
+      - name: get archive
+        uses: actions/download-artifact@v3
+        with:
+          name: verademo.war
+      - name: pipeline-scan action step
+        id: pipeline-scan
+        uses: veracode/Veracode-pipeline-scan-action@pipeline-scan-beta-v0.0.4
+        with:
+          vid: ${{ secrets.VID }}
+          vkey: ${{ secrets.VKEY }}
+          file: "verademo.war" 
+          fail_build: false
+
+# This step will import the flaws from the step above
+  import-issues:
+    needs: pipeline_scan
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: get scan results
+        uses: actions/download-artifact@v3
+        with:
+          name: filtered-results
+      - name: import flaws as issues
+        uses: veracode/veracode-flaws-to-issues@v2.1.19
+        with:
+          scan-results-json: 'filtered_results.json'
