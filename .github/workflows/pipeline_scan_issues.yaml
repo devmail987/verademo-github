@@ -57,8 +57,8 @@ jobs:
       - name: get scan results
         uses: actions/download-artifact@v4
         with:
-          name: filtered-results
+          name: filtered-results.json
       - name: import flaws as issues
         uses: veracode/veracode-flaws-to-issues@v2.2.22
         with:
-          scan-results-json: 'filtered_results.json'
+          scan-results-json: 'filtered-results.json'
