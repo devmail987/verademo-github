@@ -58,4 +58,4 @@ jobs:
           SRCCLR_API_URL: ${{ secrets.SRCCLR_API_URL }}
         uses: veracode/veracode-sca@v2.1.6
         with:
-          create-issues: false
+          create-issues: true
