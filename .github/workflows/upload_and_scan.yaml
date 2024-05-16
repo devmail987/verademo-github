@@ -8,12 +8,12 @@ jobs:
   mvn_compile: 
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-java@v3
+    - uses: actions/checkout@v4
+    - uses: actions/setup-java@v4
       with:
         distribution: 'zulu'
         java-version: 8
-    - uses: actions/cache@v3
+    - uses: actions/cache@v4
       with:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
@@ -29,7 +29,7 @@ jobs:
     needs: mvn_compile
     steps:
         - name: get artifact
-          uses: actions/download-artifact@v3
+          uses: actions/download-artifact@v4
           with:
             name: verademo.war
             path: .
