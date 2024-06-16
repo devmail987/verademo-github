@@ -11,6 +11,7 @@ pipeline {
     stages {
         stage('Git Clone') {
             steps {
+                echo 'Pulling...' + env.BRANCH_NAME
                 git "https://github.com/devmail987/verademo-github"
             }
         }
