@@ -12,7 +12,7 @@ pipeline {
         stage('Git Clone') {
             steps {
                 echo 'Pulling...' + env.BRANCH_NAME
-                git "https://github.com/devmail987/verademo-github"
+                git branch: 'main', url: 'https://github.com/devmail987/verademo-github'
             }
         }
         stage('Build') {
