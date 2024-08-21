@@ -22,7 +22,12 @@ pipeline {
         }
         stage('Veracode Upload And Scan') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'TestCredentials', passwordVariable: 'vkey', usernameVariable: 'vid')]) {
+                // withCredentials([usernamePassword(credentialsId: 'TestCredentials', passwordVariable: 'vkey', usernameVariable: 'vid')]) {
+                //     sh 'curl -o veracode-wrapper.jar https://repo1.maven.org/maven2/com/veracode/vosp/api/wrappers/vosp-api-wrappers-java/23.4.11.2/vosp-api-wrappers-java-23.4.11.2.jar'
+                //     sh 'java -jar veracode-wrapper.jar -vid ${vid} -vkey ${vkey} -action uploadandscan -appname ${VeracodeProfile} -createprofile true  -version $(date +%H%M%s%d%m%y) -filepath ${CaminhoPacote}'
+                // }
+
+                withCredentials([usernamePassword(credentialsId: 'VeracodeCredentials', passwordVariable: '$veracode_key', usernameVariable: '$veracode_id')]) {
                     sh 'curl -o veracode-wrapper.jar https://repo1.maven.org/maven2/com/veracode/vosp/api/wrappers/vosp-api-wrappers-java/23.4.11.2/vosp-api-wrappers-java-23.4.11.2.jar'
                     sh 'java -jar veracode-wrapper.jar -vid ${vid} -vkey ${vkey} -action uploadandscan -appname ${VeracodeProfile} -createprofile true  -version $(date +%H%M%s%d%m%y) -filepath ${CaminhoPacote}'
                 }

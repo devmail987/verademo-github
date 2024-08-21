@@ -50,6 +50,7 @@ import com.veracode.verademo.model.Blabber;
 import com.veracode.verademo.utils.Constants;
 import com.veracode.verademo.utils.User;
 import com.veracode.verademo.utils.UserFactory;
+import java.util.*;
 
 /**
  * @author johnadmin
@@ -247,6 +248,9 @@ public class UserController {
 
 			String sql = "SELECT password_hint FROM users WHERE username = '" + username + "'";
 			logger.info(sql);
+			Set<String> whitelistUsername = new HashSet<>(Arrays.asList("item1", "item2", "item3"));
+			if (!username.matches("\\w+(\\s*\\.\\s*\\w+)*") && !whitelistUsername.contains(username))
+			    throw new IllegalArgumentException();
 			Statement statement = connect.createStatement();
 			ResultSet result = statement.executeQuery(sql);
 			if (result.first()) {
