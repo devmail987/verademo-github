@@ -41,7 +41,8 @@ pipeline {
                     sh 'echo "Git Branch: ${GIT_BRANCH}"'
                     sh 'echo "Build ID: ${BUILD_ID}"'
                     sh 'curl -o veracode-wrapper.jar https://repo1.maven.org/maven2/com/veracode/vosp/api/wrappers/vosp-api-wrappers-java/23.4.11.2/vosp-api-wrappers-java-23.4.11.2.jar'
-                    sh 'java -jar veracode-wrapper.jar -vid $veracode_id2 -vkey $veracode_key2 -action uploadandscan -appname ${VeracodeProfile} -createprofile true  -version "${GIT_BRANCH} ${BUILD_NUMBER}" -filepath $BinaryPath'
+                    // sh 'java -jar veracode-wrapper.jar -vid $veracode_id2 -vkey $veracode_key2 -action uploadandscan -appname ${VeracodeProfile} -createprofile true  -version "${GIT_BRANCH} ${BUILD_NUMBER}" -filepath $BinaryPath'
+                    sh 'java -jar veracode-wrapper.jar -vid $veracode_id2 -vkey $veracode_key2 -action uploadandscan -appname ${VeracodeProfile} -createprofile true  -version "${BUILD_NUMBER}" -filepath $BinaryPath'
                 }
             }
         }
