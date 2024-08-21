@@ -42,9 +42,10 @@ pipeline {
                     sh 'echo "Git Branch: ${GIT_BRANCH}"'
                     sh 'echo "Git local branch: ${GIT_LOCAL_BRANCH}"'
                     sh 'echo "Build ID: ${BUILD_ID}"'
-                    def now = new Date()
-                    def timeStamp =  now.format("yyyy-MM-dd HH:mm:ss", TimeZone.getTimeZone('UTC'))
-                    sh 'echo "Timestamp: ${timeStamp}"'
+                    // def now = new Date()
+                    // def timeStamp =  now.format("yyyy-MM-dd HH:mm:ss", TimeZone.getTimeZone('UTC'))
+
+                    sh 'echo "Timestamp: ${Date}"'
 
 
                     // sh 'curl -o veracode-wrapper.jar https://repo1.maven.org/maven2/com/veracode/vosp/api/wrappers/vosp-api-wrappers-java/23.4.11.2/vosp-api-wrappers-java-23.4.11.2.jar'
