@@ -45,11 +45,11 @@ pipeline {
                     // def now = new Date()
                     // def timeStamp =  now.format("yyyy-MM-dd HH:mm:ss", TimeZone.getTimeZone('UTC'))
 
-                    sh 'echo "Timestamp: ${Date}"'
+                    sh 'echo "Date: ${Date}"'
 
 
-                    // sh 'curl -o veracode-wrapper.jar https://repo1.maven.org/maven2/com/veracode/vosp/api/wrappers/vosp-api-wrappers-java/23.4.11.2/vosp-api-wrappers-java-23.4.11.2.jar'
-                    // sh 'java -jar veracode-wrapper.jar -vid $veracode_id2 -vkey $veracode_key2 -action uploadandscan -appname ${VeracodeProfile} -createprofile true  -version "Test" -filepath $BinaryPath'
+                    sh 'curl -o veracode-wrapper.jar https://repo1.maven.org/maven2/com/veracode/vosp/api/wrappers/vosp-api-wrappers-java/23.4.11.2/vosp-api-wrappers-java-23.4.11.2.jar'
+                    sh 'java -jar veracode-wrapper.jar -vid $veracode_id2 -vkey $veracode_key2 -action uploadandscan -appname ${VeracodeProfile} -createprofile true  -version "${GIT_BRANCH} ${BUILD_NUMBER}" -filepath $BinaryPath'
                 }
             }
         }
