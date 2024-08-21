@@ -6,7 +6,7 @@ pipeline {
         VeracodeKey    = ''
         VeracodeProfile = 'Jenkins.Java'
         BinaryPath = 'target/verademo.war'
-        BranchName = env.BRANCH_NAME
+        BranchName = 'env.BRANCH_NAME'
     }
 
     stages {
